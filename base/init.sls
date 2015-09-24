@@ -4,3 +4,4 @@ include:
   - ntp
   - cron
   - docker-compose.services
+  - ebs-snapshot

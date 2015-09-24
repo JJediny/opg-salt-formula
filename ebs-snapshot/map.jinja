@@ -1,0 +1,9 @@
+{% set ebs-snapshot = salt['grains.filter_by']({
+  'Ubuntu': {
+    'ebs-snapshot': {
+      'retention': '7',
+      'cron-schedule': '47 23 * * *',
+      'monitoring': 'true'
+    }
+  }
+}, merge=salt['pillar.get']('ebs-snapshot'), default='Ubuntu') %}
