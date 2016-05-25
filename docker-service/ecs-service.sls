@@ -6,8 +6,9 @@
 # persistent data dirs -> create dirs and deliver config from templates.
 
 #include:
-#  - aws_rds
-#  - aws_elb
-#  - aws_service
-#  - aws_task
-#  - aws_dns
+#  - .aws_rds
+#  - .aws_elb
+#  - .aws_service
+#  - .aws_task
+#  - .aws_dns
+

@@ -3,7 +3,6 @@ include:
 
 /etc/docker-compose:
   file.directory
-
 {% for service_name in pillar['services'] %}
 {%   if pillar['services'][service_name]['type'] | default('compose') == 'compose' %}
 
@@ -12,7 +11,6 @@ include:
     - user: root
     - group: root
     - mode: 0755
-
 {%     if 'directories' in pillar['services'][service_name] %}
 {%       for directory in pillar['services'][service_name]['directories'] %}
 
@@ -24,10 +22,14 @@ include:
 
 {%       endfor %}
 {%     endif %}
-
+{%     if 'docker-compose-source' in pillar['services'][service_name] %}
+{%       set source_template = pillar['services'][service_name]['docker-compose-source'] %}
+{%     elseif 'config-source' in  pillar['services'][service_name] %}
+{%       set source_template = pillar['services'][service_name]['config-source'] %}
+{%     endif %}
 /etc/docker-compose/{{service_name}}/docker-compose.yml:
   file.managed:
-    - source: {{pillar['services'][service_name]['docker-compose-source']}}
+    - source: {{ source_template }}
     - template: jinja
     - user: root
     - group: root
@@ -48,7 +50,6 @@ docker-compose-{{service_name}}:
     - enable: True
     - watch:
       - file: /etc/init.d/docker-compose-{{service_name}}
-
 
 {%     if pillar['services'][service_name]['env_files'] is defined %}
 {%       for env_name in pillar['services'][service_name]['env_files'] %}

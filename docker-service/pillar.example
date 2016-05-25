@@ -1,0 +1,15 @@
+#docker compose service
+services:
+  mongodb:
+    config-source: salt://service-mongodb/templates/docker-compose.yml
+    type: compose
+    mongodb:
+      env:
+        MONGO_SECURITY_AUTH: True
+        MONGO_REPLICASET_NAME: rs0
+
+#NOTE: the supporting infrastructure, ie elb, dns, etc is currently in terraform
+services:
+  mongodb:
+    config-source: salt://service-mongodb/templates/docker-task.json.yml
+    type: ecs
