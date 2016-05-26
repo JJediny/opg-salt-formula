@@ -34,6 +34,9 @@ module flow:
 
 
 The ecs service requires a bit more than just a compose file, so will use other aws salt modules to provision the required infrastructure for the service.
+
+The pillar data structure that drives the configuration for the ecs services maps directly to the associated salt module.  See [pillar.example](pillar.example) for usage.
+
         
 ############################
 #legacy docs

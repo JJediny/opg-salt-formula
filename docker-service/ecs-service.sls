@@ -6,9 +6,9 @@
 # persistent data dirs -> create dirs and deliver config from templates.
 
 #include:
-#  - .aws_rds
-#  - .aws_elb
-#  - .aws_service
-#  - .aws_task
-#  - .aws_dns
+#  - .ecs.aws_rds
+#  - .ecs.aws_elb
+#  - .ecs.aws_service
+#  - .ecs.aws_task
+#  - .ecs.aws_dns
 
